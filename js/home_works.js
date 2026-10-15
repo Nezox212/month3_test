@@ -12,8 +12,7 @@ const gmailResults = document.querySelector("#gmail_result");
 const regex = /^[a-z0-9.]{6,30}@gmail\.com$/i;
 
 gmailInputButton.addEventListener("click", () => {
-    if(gmailInput.value.test(regex)) {
-        gmailResults.textContent = "Gmail введен коректно!";
+    if (regex.test(gmailInput.value)) {        gmailResults.textContent = "Gmail введен коректно!";
         gmailResults.style.color = "lightgreen";
     }else{
         gmailResults.textContent = "Gmail введен не коректно!";
