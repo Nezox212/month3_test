@@ -25,15 +25,82 @@ gmailInputButton.addEventListener("click", () => {
 
 
 
+//2 ------------------
+
+
+//1) Доработать прошлое ДЗ! Нужно чтобы малый квадрат теперь двигался по всему
+// родительскому квадрату. Дорабатываете код внутри проекта.
+//
+// 2) Секундомер
+// Если нажать на start то цифра начнет увеличиваться на единицу до того момента пока вы не нажмете на кнопку stop
+// Используйте методы которые мы прошли на уроке. При нажатии на start повторно она должна продолжить тот
+// счет на котором остановился. Добавить на кнопку reset обнуление счетчика и паузу. Обработать все возможные баги
+// при работе счетчика (вёрстка в проекте уже есть) Код писать внутри проекта (home_works.js)
+//
+// 3) Сделать слайдер автоматическим, чтобы срабатывала каждые 5 секунд или на ваше усмотрение
+
+
+
+
+
+//1
+const move = document.querySelector('.child_block');
+let posX = 0;
+let posY = 0;
+let direction = 'right';
+
+const moveFunc = () => {
+    setInterval(() => {
+        if (direction === 'right') {
+            posX++
+            if(posX >= 448) direction = 'down';
+        }else if(direction === 'down') {
+            posY++
+            if(posY >= 448) direction = 'left';
+        }else if(direction === 'left') {
+            posX--
+            if(posX <= 0) direction = 'up';
+        }else if(direction === 'up') {
+            posY--
+            if(posY <= 0) direction = 'right';
+        }
+        move.style.left = `${posX}px`;
+        move.style.top = `${posY}px`;
+    },5)
+}
+moveFunc();
+
+
+
+
 //2
-const moveBlockElements = document.querySelector('.child_block');
-let pos = 0;
-const test = () => {
-    pos++
-    if(pos <= 449){
-        moveBlockElements.style.left = `${pos}px`;
-        requestAnimationFrame(test)
+const start = document.querySelector('#start');
+const stop = document.querySelector('#stop');
+const reset = document.querySelector('#reset');
+const seconds = document.querySelector('#seconds');
+let startTimer = null;
+
+let time = 0;
+start.onclick = () => {
+    if (startTimer) return;
+     startTimer = setInterval(() => {
+        time++
+        seconds.textContent = time;
+    },1000)
 }
 
+stop.onclick = () => {
+
+    clearInterval(startTimer);
+    startTimer = null;
 }
-test()
+reset.onclick = () => {
+    time = 0;
+    seconds.textContent = time;
+
+    clearInterval(startTimer);
+    startTimer = null;
+}
+
+
+//3  в lesson.js
