@@ -21,7 +21,13 @@ const tabsParent = document.querySelector('.tab_content_items');
 //   if(event.target.tagName.toLowerCase() == 'button'){
 //     const index = [...tabs].indexOf(event.target);
 //     hideBlocks();
-//     showBlock(index);
+//     showBlock(index);const modal = document.querySelector('.modal');
+// const modalFunc = () => {
+//     setInterval(() => {
+//         modal.classList.toggle("active");
+//     },1000)
+// }
+// modalFunc();
 //   }
 // }
 
