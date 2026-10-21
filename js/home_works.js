@@ -194,7 +194,7 @@ processAll(mass)
 
 const makeTasks = () => [
     delay(1, 500),
-    delay(2, 1500, true), // этот падает
+    delay(2, 1500, true),
     delay(3, 0),
     delay(4, 1000),
 ];
@@ -228,8 +228,8 @@ const runAllSettled = async () => {
 const runRace = async () => {
     try {
         const result = await Promise.race([
-            delay(1, 2000),       // полезная работа
-            delay(2, 500, true),  // таймаут
+            delay(1, 2000),
+            delay(2, 500, true),
         ]);
         console.log("race успех:", result);
     } catch (err) {
