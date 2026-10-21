@@ -224,7 +224,7 @@ const runAllSettled = async () => {
     console.log("allSettled failed:", failed);
 };
 
-// 3.3 Promise.race: «полезный» delay(2000) против «таймаута» delay(500, true)
+// 3.3
 const runRace = async () => {
     try {
         const result = await Promise.race([
