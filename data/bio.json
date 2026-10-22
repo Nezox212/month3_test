@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Ruslan",
+    "age": 17,
+    "address": {
+      "planet": "Earth",
+      "country": "Kyrgyzstan",
+      "city": "Bishkek"
+    },
+    "hobbes": [
+      "Computer games",
+      "Programming",
+      "sport",
+      "eating"
+    ]
+  }
+]

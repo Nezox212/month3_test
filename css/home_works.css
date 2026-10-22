@@ -227,3 +227,7 @@
     height: 100%;
     object-fit: cover;
 }
+.character-name{
+    background: var(--black);
+    font-size: 40px;
+}

@@ -1,17 +1,17 @@
 [
   {
-    "name": "",
-    "age": 0,
-    "photo": "url"
+    "name": "Michael Jackson",
+    "age": 51,
+    "person_photo": "https://www.freepnglogos.com/uploads/michael-jackson-png/looking-you-bad-michael-jackson-transparent-png-stickpng-26.png"
   },
   {
-    "name": "",
-    "age": 0,
-    "photo": "url"
+    "name": "Sub Zero",
+    "age": 400,
+    "person_photo": "https://upload.wikimedia.org/wikipedia/ru/1/16/Sub-Zero_in_MK1.png?utm_source=ru.wikipedia.org&utm_campaign=index&utm_content=thumbnail_unscaled&_=20230811144331"
   },
   {
-    "name": "",
-    "age": 0,
-    "photo": "url"
+    "name": "Charles Oliveira",
+    "age": 37,
+    "person_photo": "https://wallpapers.com/images/hd/charles-oliveira-shirtless-jxfvr99fgt2pg5l6.jpg"
   }
 ]

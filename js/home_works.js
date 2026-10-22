@@ -240,3 +240,57 @@ const runRace = async () => {
 runAll();
 runAllSettled();
 runRace();
+
+
+
+
+//hm4
+
+//2
+fetch("/data/bio.json")
+.then(res => res.json())
+.then(data => console.log(data))
+fetch("/data/bio.json")
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.error("Ошибка:", error));
+
+
+//1
+const charactersELement = document.querySelector(".characters");
+const charactersList = document.querySelector(".characters-list");
+
+const charactersFunc = async () => {
+    try {
+        const response = await fetch("/data/characters.json");
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);
+
+        charactersList.innerHTML = "";
+        data.forEach(({ name, age, person_photo }) => {
+            const card = document.createElement("div");
+            card.className = "character-card";
+            card.innerHTML = `
+                <img src="${person_photo}" alt="${name}">
+                <h3>${name}</h3>
+                <p>Возраст: ${age}</p>
+            `;
+
+            const img = card.querySelector("img");
+            img.onerror = () => {
+                img.onerror = null;
+                img.src = "https://placehold.co/200x250?text=No+photo";
+            };
+
+            charactersList.append(card);
+        });
+    } catch (error) {
+        console.error("Ошибка загрузки персонажей:", error);
+        charactersList.innerHTML = "<p>Не удалось загрузить персонажей</p>";
+    }
+};
+
+charactersFunc();
