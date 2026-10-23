@@ -67,7 +67,7 @@ const eur = document.querySelector("#eur");
 
 const converter = (one,two,three) => {
     one.oninput = async() => {
-        const responce = await fetch("/data/converter.json", {})
+        const responce = await fetch("../data/converter.json", {})
         const {usd,eur} = await responce.json();
 
         if(one.id == "som"){

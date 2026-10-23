@@ -250,7 +250,7 @@ runRace();
 fetch("/data/bio.json")
 .then(res => res.json())
 .then(data => console.log(data))
-fetch("./data/bio.json")    .then(res => res.json())
+fetch("../data/bio.json")    .then(res => res.json())
     .then(data => console.log(data))
     .catch(error => console.error("Ошибка:", error));
 
@@ -261,7 +261,7 @@ const charactersList = document.querySelector(".characters-list");
 
 const charactersFunc = async () => {
     try {
-        const response = await fetch("./data/characters.json");        if (!response.ok) {
+        const response = await fetch("../data/characters.json");        if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
         }
         const data = await response.json();
