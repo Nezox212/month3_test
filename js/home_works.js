@@ -247,10 +247,9 @@ runRace();
 //hm4
 
 //2
-fetch("/data/bio.json")
-.then(res => res.json())
-.then(data => console.log(data))
-fetch("../data/bio.json")    .then(res => res.json())
+
+fetch("../data/bio.json")
+    .then(res => res.json())
     .then(data => console.log(data))
     .catch(error => console.error("Ошибка:", error));
 
