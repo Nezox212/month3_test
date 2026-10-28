@@ -85,6 +85,30 @@
         </div>
     </div>
 
+    <form class="sendform">
+        <div class="fields">
+            <input type="text" placeholder="Your name" name="name" id="name">
+            <select name="gender" id="gender" required>
+                <option value="" disabled selected>Пол</option>
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
+            </select>
+            <input type="text" placeholder="ваш возраст" name="age" id="age">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <div class="agree">
+                подтверждение соверешенолетия
+                <input type="checkbox" id="agree" name="agree">
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button type="submit" value="json" class="sendbtn">Send JSON</button>
+            <button type="submit" value="formdata" class="sendbtn">Send FormData</button>
+        </div>
+    </form>
+
+
     <div class="footer">
         <div class="container">
             <a href="https://www.instagram.com/baked_toastt/" target="_blank">
@@ -95,6 +119,8 @@
         </div>
     </div>
 </div>
+
+
 
 <div class="modal">
     <div class="modal_dialog">

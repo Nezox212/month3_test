@@ -255,12 +255,12 @@ fetch("../data/bio.json")
 
 
 //1
-const charactersElement = document.querySelector(".characters");
 const charactersList = document.querySelector(".characters-list");
 
 const charactersFunc = async () => {
     try {
-        const response = await fetch("../data/characters.json");        if (!response.ok) {
+        const response = await fetch("../data/characters.json");
+        if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
         }
         const data = await response.json();
@@ -291,3 +291,97 @@ const charactersFunc = async () => {
 };
 
 charactersFunc();
+
+
+
+const form = document.querySelector('form');
+const emailInput = document.querySelector('#email');
+const passwordInput = document.querySelector('#password');
+const nameInput = document.querySelector('#name');
+const ageInput = document.querySelector('#age');
+const checkBox = document.querySelector('#agree');
+const genderInput = document.querySelector('#gender');
+
+
+const BASE_API = 'https://jsonplaceholder.typicode.com/posts';
+
+const getPosts = async() => {
+    try{
+        const response = await fetch(BASE_API);
+        const data = await response.json();
+        console.log(`Количество постов: ${data.length}`)
+    }catch(error){
+        console.warn(`Произошла ошибка`, error);
+    }
+}
+
+getPosts();
+
+
+// Создать в homeworks.js и homeworks.html формочку с name,email, password, age, gender,
+// и checkbox на согласие обработки данных. Пока галочку не поставим и если возраст меньше
+// 18 лет, запрос POST на https://jsonplaceholder.typicode.com/posts не должен идти, а как
+// поставим и возраст корректный, запрос должен идти. Должны создать в двух вариантах:
+// 1) в качестве application/json данные должны идти на сервер
+// 2) в качестве multipart/form-data ( используйте new FormData(form)).
+// Обработайте ещё все возможные ошибки.
+const sendAsJson = async(payload) => {
+    try{
+        const response = await fetch(BASE_API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+            throw new Error(`Ошибка сервера: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Ответ от send JSON', data);
+        await getPosts();
+    }catch(error){
+        console.warn(`Произошла ошибка при send JSON`, error);
+    }
+}
+
+const sendAsFormData = async(payload) => {
+    try{
+        const response = await fetch(BASE_API, {
+            method: "POST",
+            body: payload
+        });
+        if (!response.ok) {
+            throw new Error(`Ошибка сервера: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Ответ от send Form Data', data);
+        await getPosts();
+    }catch(error){
+        console.warn(`Произошла ошибка при send Form Data`, error);
+    }
+}
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!checkBox.checked || Number(ageInput.value) < 18) {
+        alert('Нужно подтвердить, что вам есть 18 лет');
+        return;
+    }
+
+    const mode = event.submitter.value;
+    if (mode == 'json') {
+        await sendAsJson({
+            name: nameInput.value,
+            email: emailInput.value,
+            password: passwordInput.value,
+            age: ageInput.value,
+            gender: genderInput.value,
+        });
+    } else {
+        const formData = new FormData(form);
+        await sendAsFormData(formData);
+    }
+    form.reset();
+});
